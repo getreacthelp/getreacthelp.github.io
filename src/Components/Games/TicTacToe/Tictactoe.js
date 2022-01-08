@@ -181,9 +181,9 @@ function Tictactoe() {
         <p
           style={{
             fontSize: "20px",
-            backgroundColor: letterState && "black",
-            color: letterState && "white",
-            marginRight:'10px'
+            backgroundColor: letterState && !winX && !winO && "black",
+            color: letterState && !winX && !winO && "white",
+            marginRight: "10px",
           }}
         >
           {text.textX}
@@ -194,9 +194,9 @@ function Tictactoe() {
         <p
           style={{
             fontSize: "20px",
-            backgroundColor: !letterState && "black",
-            color: !letterState && "white",
-            marginLeft:'10px'
+            backgroundColor: !letterState && !winX && !winO && "black",
+            color: !letterState && !winX && !winO && "white",
+            marginLeft: "10px",
           }}
         >
           {text.textO}
