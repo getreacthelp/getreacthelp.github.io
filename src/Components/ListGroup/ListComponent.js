@@ -4,15 +4,15 @@ import { Link } from "react-router-dom";
 
 function ListComponent(props) {
   return (
-    <ListGroup as="ul">
-      <ListGroup.Item as="li">
+    <ListGroup as="ul" style={{display:'flex',justifyContent:'space-between',backgroundColor:'red'}}>
+      <ListGroup.Item as="li" variant="dark" style={{display:'flex',justifyContent:'space-between'}}>
         <Link
           to={props.route}
           style={styles.listItem}
         >
           {props.name}
         </Link>
-        <Link to="/" className="px-5" style={styles.listItem}>
+        <Link to="/" style={styles.listItem}>
           Tutorial to create
         </Link>
       </ListGroup.Item>
