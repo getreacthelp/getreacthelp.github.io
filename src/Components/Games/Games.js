@@ -1,7 +1,10 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { gamesList, ListComponent } from "../../Components";
 
 function Games() {
+  useEffect(() => {
+    document.title = "Get React Help - Games";
+  }, []);
   return (
     <Fragment>
       <div style={{ backgroundColor: "lightgray" }} className="px-3 py-2">

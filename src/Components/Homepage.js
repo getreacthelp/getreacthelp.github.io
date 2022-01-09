@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { routingConstants } from "../utils/constants";
 
 function Homepage() {
+  useEffect(() => {
+    document.title = "Get React Help - Home";
+  }, []);
   return (
     <Container style={{ textAlign: "center" }}>
       <h1 className="mt-5 mb-2">Hello there!</h1>

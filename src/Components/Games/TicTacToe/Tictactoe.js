@@ -9,6 +9,7 @@ function Tictactoe() {
   const [winX, setWinX] = useState(false);
   const [winO, setWinO] = useState(false);
   const [winValues, setWinValues] = useState([]);
+  const [gameTied, setGameTied] = useState(0);
   const [text, setText] = useState({
     textX: "X Turn",
     textO: "O Turn",
@@ -48,6 +49,7 @@ function Tictactoe() {
         }
         setLetterState((prev) => !prev);
       }
+      setGameTied(gameTied + 1);
     }
   };
 
@@ -73,6 +75,7 @@ function Tictactoe() {
       textO: "O Turn",
     });
     setLetterState(true);
+    setGameTied(0);
   };
 
   useEffect(() => {
@@ -82,7 +85,6 @@ function Tictactoe() {
         setWinX(true);
         setWinValues(item);
       } else if (checker(arrO, item)) {
-        console.log("y");
         setWinO(true);
         setWinValues(item);
       }
@@ -95,18 +97,35 @@ function Tictactoe() {
       });
     } else if (winO) {
       setText({
-        textX: "X Win",
-        textO: "O Lose",
+        textX: "X Lose",
+        textO: "O Win",
+      });
+    } else if (gameTied === 9) {
+      setText({
+        textX: "Game Tied!",
+        textO: "Game Tied!",
       });
     }
-  }, [letterState, arrX, arrO, winner, winX, winO]);
+  }, [letterState, arrX, arrO, winner, winX, winO, gameTied]);
+  useEffect(() => {
+    document.title = "Get React Help - Tic Tac Toe";
+  }, []);
   return (
     <Container>
       <div
         style={{
           display: "flex",
           justifyContent: "center",
-          marginTop: "100px",
+          marginTop: "50px",
+        }}
+      >
+        <h1>Welcome to Tic Tac Toe!</h1>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "50px",
         }}
       >
         <BoxDesktop
@@ -181,8 +200,9 @@ function Tictactoe() {
         <p
           style={{
             fontSize: "20px",
-            backgroundColor: letterState && !winX && !winO && "black",
-            color: letterState && !winX && !winO && "white",
+            backgroundColor:
+              letterState && !winX && !winO && gameTied < 9 && "black",
+            color: letterState && !winX && !winO && gameTied < 9 && "white",
             marginRight: "10px",
           }}
         >
@@ -194,8 +214,9 @@ function Tictactoe() {
         <p
           style={{
             fontSize: "20px",
-            backgroundColor: !letterState && !winX && !winO && "black",
-            color: !letterState && !winX && !winO && "white",
+            backgroundColor:
+              !letterState && !winX && gameTied < 9 && !winO && "black",
+            color: !letterState && !winX && gameTied < 9 && !winO && "white",
             marginLeft: "10px",
           }}
         >
